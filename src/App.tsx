@@ -12,11 +12,13 @@ function App() {
         <GetImageForm />
         {error && <p className="text-red-700">{error}</p>}
         {isLoading && <SpinningLoader />}
-        <ImagePreview
-          refetch={refetch}
-          save={save}
-          imgUrl={previewData?.imgUrl}
-        />
+        {previewData && (
+          <ImagePreview
+            refetch={refetch}
+            save={save}
+            imgUrl={previewData?.imgUrl}
+          />
+        )}
       </div>
       <div className="flex-grow h-fit grid grid-cols-3 gap-8">
         {!!data.length &&
