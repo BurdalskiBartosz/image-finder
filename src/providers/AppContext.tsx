@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { GetImageFormType } from "../validations/getImageFormValidation";
 import { CardData } from "../types";
 
-export type ImageDataContext = {
+export type AppContext = {
   submit: (data: GetImageFormType) => Promise<void>;
   save: () => void;
   refetch: () => void;
@@ -12,7 +12,7 @@ export type ImageDataContext = {
   previewData: CardData | undefined;
 };
 
-export const ImageDataContext = createContext<ImageDataContext>({
+export const AppContext = createContext<AppContext>({
   submit: async () => {},
   save: () => {},
   refetch: () => {},

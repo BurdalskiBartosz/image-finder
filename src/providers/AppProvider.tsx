@@ -1,10 +1,10 @@
 import { PropsWithChildren, useState } from "react";
 import { GetImageFormType } from "../validations/getImageFormValidation";
 import { CardData } from "../types";
-import { ImageDataContext } from "./ImageDataContext";
+import { AppContext } from "./AppContext";
 import useFetchImage from "../hooks/useFetchImage";
 
-export const ImageDataProvider = ({ children }: PropsWithChildren) => {
+export const AppProvider = ({ children }: PropsWithChildren) => {
   const { error, isLoading, fetchData } = useFetchImage();
   const [data, setData] = useState<CardData[]>([]);
   const [topic, setTopic] = useState<string | null>(null);
@@ -49,10 +49,10 @@ export const ImageDataProvider = ({ children }: PropsWithChildren) => {
   };
 
   return (
-    <ImageDataContext.Provider
+    <AppContext.Provider
       value={{ submit, isLoading, error, refetch, save, previewData, data }}
     >
       {children}
-    </ImageDataContext.Provider>
+    </AppContext.Provider>
   );
 };
