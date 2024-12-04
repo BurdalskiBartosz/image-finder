@@ -3,12 +3,13 @@ import { GetImageFormType } from "../validations/getImageFormValidation";
 import { CardData } from "../types";
 import { ImageDataContext } from "./ImageDataContext";
 import useFetchImage from "../hooks/useFetchImage";
+import { useNavigate } from "react-router";
 
 export const ImageDataProvider = ({ children }: PropsWithChildren) => {
   const { error, isLoading, fetchData } = useFetchImage();
-  const [data, setData] = useState<CardData[]>([]);
   const [topic, setTopic] = useState<string | null>(null);
   const [previewData, setPreviewData] = useState<CardData>();
+  const navigate = useNavigate();
 
   const fetchImage = async (topic: string) => {
     const json = await fetchData(topic);
@@ -29,12 +30,13 @@ export const ImageDataProvider = ({ children }: PropsWithChildren) => {
       surname: data.surname,
       imgUrl: imageDetails?.urls.small,
     });
+    navigate("/image-preview");
   };
 
   const save = () => {
     if (previewData) {
-      setData([...data, previewData]);
-      setPreviewData(undefined);
+      setPreviewData(previewData);
+      navigate("/card");
     }
   };
 
@@ -50,7 +52,7 @@ export const ImageDataProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <ImageDataContext.Provider
-      value={{ submit, isLoading, error, refetch, save, previewData, data }}
+      value={{ submit, isLoading, error, refetch, save, previewData }}
     >
       {children}
     </ImageDataContext.Provider>

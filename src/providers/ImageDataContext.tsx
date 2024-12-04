@@ -8,7 +8,6 @@ export type ImageDataContext = {
   refetch: () => void;
   isLoading: boolean;
   error: string | null;
-  data: CardData[];
   previewData: CardData | undefined;
 };
 
@@ -18,6 +17,5 @@ export const ImageDataContext = createContext<ImageDataContext>({
   refetch: () => {},
   isLoading: false,
   error: null,
-  data: [],
   previewData: undefined,
 });
