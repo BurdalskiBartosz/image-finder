@@ -15,6 +15,10 @@ export const selectOptions = [
     value: "wildlife",
   },
   {
+    label: "Technology",
+    value: "technology",
+  },
+  {
     label: "Other",
     value: "other",
   },
