@@ -1,13 +1,12 @@
 import cn from "classnames";
-import { forwardRef } from "react";
+import { forwardRef, InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 type InputProps = {
-  id: string;
   label: string;
-  placeholder: string;
   error?: string;
-} & UseFormRegisterReturn;
+} & UseFormRegisterReturn &
+  InputHTMLAttributes<HTMLInputElement>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ id, label, placeholder, error, ...rest }, ref) => {

@@ -6,6 +6,7 @@ export type CardData = {
 
 export type ImageDetails = {
   urls: {
-    small: string;
+    small?: string;
   };
+  errors?: string[];
 };

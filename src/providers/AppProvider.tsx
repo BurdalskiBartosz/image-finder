@@ -20,14 +20,10 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
 
     const imageDetails = await fetchImage(data.topic ?? data.prefferedTopic);
 
-    if (!imageDetails) {
-      return;
-    }
-
     setPreviewData({
       name: data.name,
       surname: data.surname,
-      imgUrl: imageDetails?.urls.small,
+      imgUrl: imageDetails?.urls?.small,
     });
   };
 
@@ -43,7 +39,7 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
       const imageDetails = await fetchImage(topic);
       setPreviewData({
         ...previewData,
-        imgUrl: imageDetails?.urls.small,
+        imgUrl: imageDetails?.urls?.small,
       });
     }
   };

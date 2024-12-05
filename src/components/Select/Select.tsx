@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, SelectHTMLAttributes } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import cn from "classnames";
 
@@ -8,11 +8,11 @@ type SelectOption = {
 };
 
 type SelectProps = {
-  id: string;
   label: string;
   error?: string;
   options: SelectOption[];
-} & UseFormRegisterReturn;
+} & UseFormRegisterReturn &
+  SelectHTMLAttributes<HTMLSelectElement>;
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ id, label, options, error, ...rest }, ref) => {
@@ -29,7 +29,6 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
         <div className="relative ">
           <select
             ref={ref}
-            id={id}
             className={cn(
               "w-full rounded-lg border text-gray-600 border-gray-500 px-3 py-2 ",
               {

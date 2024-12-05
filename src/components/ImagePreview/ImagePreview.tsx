@@ -1,26 +1,26 @@
-import Button from "../Button/Button";
+import cn from "classnames";
+import { useApp } from "../../hooks/useApp";
+import SpinningLoader from "../SpinningLoader/SpinningLoader";
+import ImageSelection from "../ImageSelection/ImageSelection";
 
-type ImagePreviewProps = {
-  imgUrl?: string;
-  refetch: () => void;
-  save: () => void;
-};
+const ImagePreview = () => {
+  const { isLoading, previewData } = useApp();
 
-const ImagePreview = ({ imgUrl, save, refetch }: ImagePreviewProps) => {
   return (
-    <div>
-      {imgUrl ? (
-        <>
-          <img className="rounded-lg overflow-hidden" src={imgUrl} />
-          <div className="flex gap-3 mt-4 jus">
-            <Button type="reject" handleClick={refetch}>
-              Reject
-            </Button>
-            <Button handleClick={save}>Accept</Button>
-          </div>
-        </>
+    <div
+      className={cn("border relative border-primary rounded-lg h-[266px] ", {
+        "py-2 px-3": !previewData?.imgUrl,
+      })}
+    >
+      {isLoading && (
+        <div className="absolute top-0 z-10 flex justify-center bg-black/80 items-center left-0 w-full h-full ">
+          <SpinningLoader />
+        </div>
+      )}
+      {previewData ? (
+        <ImageSelection />
       ) : (
-        <p>Couldn't find any image</p>
+        <p>Fill out the form to find and view a photo</p>
       )}
     </div>
   );
